@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>NCLEX-RN Study Guide 2026</title>
+<style>
+/* ============================================
+   NCLEX-RN STUDY GUIDE V4 — CSS
+   7 Panner Mechanisms Baked In
+   Design: Parallax-tested (03.0813)
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap');
+
+@page {
+  size: letter;
+  margin: 0.85in 0.75in 0.9in 0.75in;
+  @bottom-center {
+    content: counter(page);
+    font: 500 8pt 'IBM Plex Mono', monospace;
+    color: #9A8D80;
+  }
+  @top-right {
+    content: string(section-name);
+    font: 500 7pt 'IBM Plex Mono', monospace;
+    color: #9A8D80;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+}
+
+@page :first { @bottom-center { content: none; } @top-right { content: none; } }
+@page cover { margin: 0; @bottom-center { content: none; } @top-right { content: none; } }
+@page frontmatter { @bottom-center { content: counter(page, lower-roman); } @top-right { content: none; } }
+
+:root {
+  --text: #2C2520;
+  --secondary: #6B5E52;
+  --light: #9A8D80;
+  --faint: #C4B9AB;
+  --warm: #F7F1E8;
+  --surface: #FDFAF5;
+  --border: #E8DFD3;
+  --accent: #B85C2F;
+  --accent-bg: rgba(184, 92, 47, 0.06);
+  --green: #1A7D3F;
+  --green-bg: rgba(26, 125, 63, 0.06);
+  --serif: 'Source Serif 4', Georgia, serif;
+  --mono: 'IBM Plex Mono', Menlo, monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--serif);
+  font-size: 10pt;
+  line-height: 1.65;
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- COVER ---- */
+.cover {
+  page: cover;
+  width: 100vw;
+  height: 100vh;
+  background: var(--text);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2in;
+  page-break-after: always;
+}
+.cover h1 {
+  font-family: var(--serif);
+  font-size: 36pt;
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 16px;
+  letter-spacing: -0.5px;
+}
+.cover .edition {
+  font-family: var(--mono);
+  font-size: 9pt;
+  font-weight: 500;
+  color: var(--faint);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+}
+.cover .tagline {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 12pt;
+  color: var(--faint);
+  max-width: 320px;
+  line-height: 1.6;
+}
+
+/* ---- FRONT MATTER ---- */
+.frontmatter { page: frontmatter; }
+
+/* ---- SECTION HEADERS (mono = navigation chrome) ---- */
+.section-header {
+  page-break-before: always;
+  padding: 80px 0 40px;
+  border-bottom: 2px solid var(--text);
+  margin-bottom: 32px;
+  string-set: section-name attr(data-section-name);
+}
+.section-header .section-number {
+  font: 700 9pt var(--mono);
+  color: var(--accent);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.section-header h2 {
+  font-family: var(--serif);
+  font-size: 24pt;
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 8px;
+}
+.section-header .section-weight {
+  font: 500 8pt var(--mono);
+  color: var(--light);
+}
+.section-header .section-feel {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--secondary);
+  font-size: 10.5pt;
+  margin-top: 12px;
+  line-height: 1.6;
+}
+
+/* ---- TOPIC (field-group: header + content as inseparable unit) ---- */
+.topic {
+  margin-bottom: 28px;
+  page-break-inside: avoid;
+}
+.topic-title {
+  font: 700 13pt var(--serif);
+  color: var(--text);
+  margin-bottom: 2px;
+  page-break-after: avoid;
+}
+.topic-subtitle {
+  font: 500 7.5pt var(--mono);
+  color: var(--light);
+  letter-spacing: 0.5px;
+  margin-bottom: 14px;
+  page-break-after: avoid;
+}
+
+/* ---- FIELD GROUPS (label + content inseparable) ---- */
+.field-group {
+  margin-bottom: 12px;
+  page-break-inside: avoid;
+}
+.field-label {
+  font: 700 7pt var(--mono);
+  color: var(--accent);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+  page-break-after: avoid;
+}
+.field-content {
+  font-family: var(--serif);
+  font-size: 10pt;
+  line-height: 1.65;
+  color: var(--text);
+}
+.field-content p { margin-bottom: 6px; }
+
+/* ---- EXAM STRATEGY (black box — loudest element) ---- */
+.exam-strategy {
+  background: var(--text);
+  color: #fff;
+  padding: 14px 18px;
+  border-radius: 4px;
+  margin: 14px 0;
+  page-break-inside: avoid;
+}
+.exam-strategy .field-label {
+  color: var(--accent);
+  font-size: 7.5pt;
+  margin-bottom: 6px;
+}
+.exam-strategy .field-content {
+  color: #fff;
+  font-size: 9.5pt;
+  line-height: 1.6;
+}
+
+/* ---- CONNECT BOX ---- */
+.connect-box {
+  border-left: 3px solid var(--border);
+  padding: 10px 16px;
+  margin: 14px 0;
+  background: var(--warm);
+  page-break-inside: avoid;
+}
+.connect-box .field-label { color: var(--secondary); }
+.connect-box .field-content {
+  font-style: italic;
+  font-size: 9.5pt;
+  color: var(--secondary);
+}
+
+/* ---- MEDS TABLE ---- */
+.meds-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 9pt;
+  margin: 8px 0;
+}
+.meds-table th {
+  font: 600 7pt var(--mono);
+  color: var(--light);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-align: left;
+  padding: 6px 8px;
+  border-bottom: 1.5px solid var(--border);
+}
+.meds-table td {
+  padding: 5px 8px;
+  border-bottom: 1px solid var(--border);
+  font-family: var(--serif);
+  vertical-align: top;
+}
+
+/* ---- RETRIEVAL QUESTIONS (end of section — periscope depth) ---- */
+.retrieval-block {
+  background: var(--warm);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 18px 22px;
+  margin: 30px 0;
+  page-break-inside: avoid;
+}
+.retrieval-block .retrieval-header {
+  font: 700 8pt var(--mono);
+  color: var(--accent);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.retrieval-block .retrieval-frame {
+  font: italic 9pt var(--serif);
+  color: var(--secondary);
+  margin-bottom: 12px;
+}
+.retrieval-block ol {
+  padding-left: 20px;
+  font-family: var(--serif);
+  font-size: 9.5pt;
+  color: var(--text);
+}
+.retrieval-block ol li { margin-bottom: 8px; }
+
+/* ---- PARKLAND (breathing pages between sections) ---- */
+.parkland {
+  page-break-before: always;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+  text-align: center;
+  padding: 120px 60px;
+}
+.parkland .parkland-text {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 12pt;
+  color: var(--light);
+  max-width: 380px;
+  line-height: 1.7;
+}
+.parkland .parkland-check {
+  font: 500 8pt var(--mono);
+  color: var(--faint);
+  margin-top: 24px;
+}
+
+/* ---- CONVERGENCE PAGE (integration architecture) ---- */
+.convergence {
+  page-break-before: always;
+  border: 2px solid var(--text);
+  padding: 28px;
+  margin: 40px 0;
+}
+.convergence h3 {
+  font: 700 8pt var(--mono);
+  color: var(--accent);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.convergence .convergence-title {
+  font: 700 16pt var(--serif);
+  margin-bottom: 14px;
+}
+.convergence .convergence-body {
+  font-size: 10pt;
+  line-height: 1.7;
+  color: var(--secondary);
+}
+
+/* ---- FRONT MATTER STYLES ---- */
+.contract {
+  padding: 40px 0;
+}
+.contract h2 {
+  font: 800 20pt var(--serif);
+  margin-bottom: 20px;
+}
+.contract p {
+  font-size: 10.5pt;
+  line-height: 1.75;
+  margin-bottom: 14px;
+}
+.contract .contract-terms {
+  background: var(--warm);
+  border: 1px solid var(--border);
+  padding: 20px 24px;
+  border-radius: 6px;
+  margin: 20px 0;
+}
+.contract .contract-terms p {
+  font-size: 10pt;
+  margin-bottom: 8px;
+}
+
+.map-section h2 {
+  font: 800 20pt var(--serif);
+  margin-bottom: 16px;
+}
+.map-section p {
+  font-size: 10.5pt;
+  line-height: 1.75;
+  margin-bottom: 14px;
+}
+
+.island {
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  padding: 12px 16px;
+  margin-bottom: 10px;
+  page-break-inside: avoid;
+}
+.island .island-name {
+  font: 700 10pt var(--serif);
+}
+.island .island-weight {
+  font: 600 7.5pt var(--mono);
+  color: var(--accent);
+  margin-left: 8px;
+}
+.island .island-feel {
+  font: italic 9pt var(--serif);
+  color: var(--secondary);
+  margin-top: 2px;
+}
+
+/* ---- CALIBRATION / HOW TO STUDY ---- */
+.study-method h2 {
+  font: 800 20pt var(--serif);
+  margin-bottom: 16px;
+}
+.study-method h3 {
+  font: 700 13pt var(--serif);
+  margin-top: 20px;
+  margin-bottom: 8px;
+}
+.study-method p {
+  font-size: 10.5pt;
+  line-height: 1.75;
+  margin-bottom: 12px;
+}
+
+.cycle-box {
+  background: var(--text);
+  color: #fff;
+  padding: 16px 20px;
+  border-radius: 4px;
+  margin: 14px 0;
+  page-break-inside: avoid;
+}
+.cycle-box .cycle-name {
+  font: 700 8pt var(--mono);
+  color: var(--accent);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.cycle-box .cycle-desc {
+  font: 400 9.5pt var(--serif);
+  line-height: 1.6;
+}
+
+.signal-box {
+  border: 1px solid var(--border);
+  padding: 12px 16px;
+  margin: 10px 0;
+  border-radius: 4px;
+  page-break-inside: avoid;
+}
+.signal-box .signal-label {
+  font: 700 7pt var(--mono);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.signal-box .signal-label.hot { color: #C4302B; }
+.signal-box .signal-label.cold { color: #2B6CC4; }
+.signal-box .signal-label.right { color: var(--green); }
+
+/* ---- TOC with progress tracking ---- */
+.toc h2 {
+  font: 800 20pt var(--serif);
+  margin-bottom: 20px;
+}
+.toc-entry {
+  display: flex;
+  align-items: baseline;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 10pt;
+}
+.toc-check {
+  font: 400 12pt var(--mono);
+  color: var(--faint);
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+.toc-name { flex: 1; font: 600 10pt var(--serif); }
+.toc-weight {
+  font: 500 7.5pt var(--mono);
+  color: var(--light);
+  margin-left: 8px;
+  flex-shrink: 0;
+}
+
+/* ---- UTILITY ---- */
+.page-break { page-break-after: always; }
+.no-break { page-break-inside: avoid; }
+strong { font-weight: 700; }
+em { font-style: italic; }
+
+</style>
+</head>
+<body>
+
+<!-- ============================== -->
+<!-- COVER                          -->
+<!-- ============================== -->
+<div class="cover">
+  <div class="edition">2026 Edition</div>
+  <h1>NCLEX-RN<br>Study Guide</h1>
+  <div class="tagline">You already have the cans.<br>We're building the furnace.</div>
+</div>
+
+<!-- ============================== -->
+<!-- TABLE OF CONTENTS              -->
+<!-- ============================== -->
+<div class="frontmatter toc">
+  <h2>Contents</h2>
+
+  <div class="toc-entry"><span class="toc-check">☐</span><span class="toc-name">The Contract</span><span class="toc-weight"></span></div>
+  <div class="toc-entry"><span class="toc-check">☐</span><span class="toc-name">Your Map</span><span class="toc-weight"></span></div>
+  <div class="toc-entry"><span class="toc-check">☐</span><span class="toc-name">How to Study</span><span class="toc-weight"></span></div>
+
+  <div style="height: 16px;"></div>
+
+  <div class="toc-entry"><span class="toc-check">☐</span><span class="toc-name">Section 1 — Management of Care</span><span class="toc-weight">18%</span></div>
+  <div class="toc-entry"><span class="toc-check">☐</span><span class="toc-name">Section 2 — Safety &amp; Infection Control</span><span class="toc-weight">13%</span></div>
+  <div class="toc-entry"><span class="toc-check">☐</span><span class="toc-name">Section 3 — Health Promotion &amp; Maintenance</span><span class="toc-weight">9%</span></div>
+  <div class="toc-entry"><span class="toc-check">☐</span><span class="toc-name">Section 4 — Psychosocial Integrity</span><span class="toc-weight">9%</span></div>
+
+  <div style="height: 8px;"></div>
+  <div class="toc-entry" style="border-bottom: none;"><span class="toc-check"></span><span class="toc-name" style="font-style: italic; color: var(--light); font-weight: 400;">Convergence — Where the Islands Meet</span></div>
+  <div style="height: 8px;"></div>
+
+  <div class="toc-entry"><span class="toc-check">☐</span><span class="toc-name">Section 5 — Basic Care &amp; Comfort</span><span class="toc-weight">9%</span></div>
+  <div class="toc-entry"><span class="toc-check">☐</span><span class="toc-name">Section 6 — Pharmacological Therapies</span><span class="toc-weight">16%</span></div>
+  <div class="toc-entry"><span class="toc-check">☐</span><span class="toc-name">Section 7 — Reduction of Risk Potential</span><span class="toc-weight">12%</span></div>
+  <div class="toc-entry"><span class="toc-check">☐</span><span class="toc-name">Section 8 — Physiological Adaptation</span><span class="toc-weight">14%</span></div>
+
+  <div style="height: 8px;"></div>
+  <div class="toc-entry" style="border-bottom: none;"><span class="toc-check"></span><span class="toc-name" style="font-style: italic; color: var(--light); font-weight: 400;">Convergence — Same Landmass</span></div>
+  <div style="height: 8px;"></div>
+
+  <div class="toc-entry"><span class="toc-check">☐</span><span class="toc-name">Section 9 — Quick Reference Cards</span><span class="toc-weight"></span></div>
+  <div class="toc-entry"><span class="toc-check">☐</span><span class="toc-name">Section 10 — Practice Assessment</span><span class="toc-weight"></span></div>
+  <div class="toc-entry"><span class="toc-check">☐</span><span class="toc-name">Silent Running — Last 48 Hours</span><span class="toc-weight"></span></div>
+  <div class="toc-entry"><span class="toc-check">☐</span><span class="toc-name">Answer Keys</span><span class="toc-weight"></span></div>
+</div>
+
+<!-- ============================== -->
+<!-- THE CONTRACT (Mechanism 1)     -->
+<!-- ============================== -->
+<div class="frontmatter contract page-break">
+  <h2>The Contract</h2>
+
+  <p>You made it through nursing school. Clinical rotations, care plans, pharmacology at midnight, skills labs where you practiced on mannequins until the motions lived in your hands. You have the knowledge. It's in there — scattered across semesters, tucked into muscle memory, buried under exhaustion and caffeine.</p>
+
+  <p>This guide doesn't teach you nursing. You already learned nursing.</p>
+
+  <p>This guide melts down everything you've accumulated — all that scattered, semester-sized knowledge — and pours it into a shape the NCLEX can read. Your clinical knowledge has detached from the test format, like a shadow that slipped loose. We're sewing it back on.</p>
+
+  <div class="contract-terms">
+    <p><strong>What we bring:</strong> The structure. Eight sections mapped to exactly what the NCLEX tests, weighted to match. A study method. Practice that forces retrieval, not recognition. Exam strategies that name the traps before you hit them.</p>
+    <p><strong>What you bring:</strong> The hours. Phone off, door closed, two hours at a time. The belief that you can pass — because if you graduated from a nursing program, you can. That's not motivation. That's math.</p>
+    <p><strong>The deal:</strong> If you do the work, this works. Not because this guide is magic. Because the structure is sound, the content matches the exam, and you already know more than you think you do.</p>
+  </div>
+
+  <p>Here's something nobody tells you: there's a lag between studying and knowing. You'll put in hours and feel nothing — no confidence, no clarity, just more flashcards. Then one morning you'll read a practice question and the answer will be obvious. Not because you learned it that morning. Because it was building the whole time, underneath, where you couldn't see it.</p>
+
+  <p>Trust the lag. It's working.</p>
+
+  <p>One more thing. Around the halfway point — Week 3, maybe Week 4 — you're going to hate this guide. You'll hate nursing. You'll question why you chose this profession while staring at electrolyte values at 11pm. That's not failure. That's the slog. It's weather. It happens to everyone. Keep walking. The car is where you left it.</p>
+
+  <p>Six months from now, you won't remember the slog. You'll remember that you did it.</p>
+</div>
+
+<!-- ============================== -->
+<!-- YOUR MAP (Mechanism 2)         -->
+<!-- ============================== -->
+<div class="frontmatter map-section page-break">
+  <h2>Your Map</h2>
+
+  <p>The NCLEX-RN tests eight areas. They call them "Client Needs categories." We're going to call them what they are: islands in an archipelago. Some are big. Some are small. Some are bridged to each other. Some are separated by deep water. You need to know all of them — but you need to know the big ones <em>better</em>.</p>
+
+  <p>Before you study a single topic, learn the map. After reading this page, you should be able to sketch the territory from memory — which islands are biggest, which connect, and where the airport is.</p>
+
+  <p>The airport is the exam. You can see it from every island. Everything you study points there.</p>
+
+  <div style="height: 12px;"></div>
+
+  <div class="island"><span class="island-name">Section 1 — Management of Care</span><span class="island-weight">18%</span><div class="island-feel">The biggest island. Delegation, prioritization, ethics, legal. The question is always: who does what, in what order, and who's responsible?</div></div>
+
+  <div class="island"><span class="island-name">Section 6 — Pharmacological Therapies</span><span class="island-weight">16%</span><div class="island-feel">The lagoon. Beautiful and dangerous. Medications, IV therapy, blood products, dose calculations. The mermaids will drown you if you're careless.</div></div>
+
+  <div class="island"><span class="island-name">Section 8 — Physiological Adaptation</span><span class="island-weight">14%</span><div class="island-feel">The mountain. Cardiac, respiratory, neuro, shock, burns, emergencies. The hardest clinical content. Steep terrain, best views.</div></div>
+
+  <div class="island"><span class="island-name">Section 2 — Safety &amp; Infection Control</span><span class="island-weight">13%</span><div class="island-feel">The harbor. Precautions, restraints, fire safety, body mechanics, error prevention. The procedures that keep everyone alive while you do the medicine.</div></div>
+
+  <div class="island"><span class="island-name">Section 7 — Reduction of Risk Potential</span><span class="island-weight">12%</span><div class="island-feel">The observatory. Labs, ABGs, diagnostics, chest tubes, EKGs. You read the instruments. The instruments tell you what's happening inside.</div></div>
+
+  <div class="island"><span class="island-name">Section 3 — Health Promotion &amp; Maintenance</span><span class="island-weight">9%</span><div class="island-feel">The garden. Prenatal, labor, newborn, pediatric milestones, screenings, aging. Life from beginning to end.</div></div>
+
+  <div class="island"><span class="island-name">Section 4 — Psychosocial Integrity</span><span class="island-weight">9%</span><div class="island-feel">The hearth. Therapeutic communication, mental health, grief, crisis, substance abuse. Not rules about what to say — a wider circle that includes the patient.</div></div>
+
+  <div class="island"><span class="island-name">Section 5 — Basic Care &amp; Comfort</span><span class="island-weight">9%</span><div class="island-feel">The homestead. Nutrition, mobility, rest, pain management, elimination. The daily work of keeping a human body comfortable and functioning.</div></div>
+
+  <div style="height: 16px;"></div>
+
+  <p>Notice the proportions. Sections 1, 6, and 8 together make up almost half your exam. If you can only study three things well, study those. That's not cutting corners — that's triage. The same skill the exam is testing.</p>
+
+  <p>Some islands are bridged. Pharmacology (Section 6) connects to almost everything — every disease has medications, every medication has side effects, every side effect is a safety concern. If Pharm is the lagoon, its water touches every shore. Management of Care (Section 1) connects to everything too — delegation and prioritization show up in every clinical scenario.</p>
+
+  <p>Some islands are separated by deep water. Mental Health (Section 4) and Fluid &amp; Electrolytes (Section 7) share almost no shore. That's real. The exam tests you at the bridges, not in the middle of the islands.</p>
+
+  <p>This map is yours now. You'll come back to it. When you're deep in a section and feeling lost, zoom out. Find your island. See the airport. Keep going.</p>
+</div>
+
+<!-- ============================== -->
+<!-- HOW TO STUDY (Mechanisms 3,5,6)-->
+<!-- ============================== -->
+<div class="frontmatter study-method page-break">
+  <h2>How to Study</h2>
+
+  <p>The NCLEX doesn't test what you know. It tests what you'd <em>do</em>. Every hour you spend memorizing facts without practicing decisions is an hour spent fighting the wrong enemy. You don't need to know everything — you need to know how to think through anything.</p>
+
+  <p>This guide uses a four-cycle study method. Each cycle builds on the last.</p>
+
+  <div class="cycle-box">
+    <div class="cycle-name">Cycle 1 — Survey</div>
+    <div class="cycle-desc">Read the full section without studying. Don't highlight. Don't take notes. Just read. Learn the shape of the island before you explore it. When you're done, you should know what's there — not the details, but the territory.</div>
+  </div>
+
+  <div class="cycle-box">
+    <div class="cycle-name">Cycle 2 — Triage</div>
+    <div class="cycle-desc">Go back through the section. For each topic, ask: do I already know this from clinicals? Mark it. Can I recognize this but not explain it? Mark it differently. Is this completely new? Mark it. You're sorting into three piles: solid, shaky, and unknown. Your study time goes to shaky and unknown. Solid gets a quick review and nothing more.</div>
+  </div>
+
+  <div class="cycle-box">
+    <div class="cycle-name">Cycle 3 — Integrate</div>
+    <div class="cycle-desc">Study your shaky and unknown topics using the full topic template — WHAT, WHY, MECHANISM, RECOGNIZE, ACT, MEDS, EXAM STRATEGY, CONNECT. Then answer the retrieval questions at the end of the section with the book closed. If you can't answer, go back to that topic. If you can, move on.</div>
+  </div>
+
+  <div class="cycle-box">
+    <div class="cycle-name">Cycle 4 — Sharpen</div>
+    <div class="cycle-desc">Quick Reference Cards only. Can you recall the key facts from the card without looking? This is the afterglow — you're not learning new material, you're proving that the material stuck. If a card stumps you, go back to the topic.</div>
+  </div>
+
+  <h3>Finding Your Temperature</h3>
+
+  <p>Study intensity has a sweet spot. Too casual and nothing sticks. Too intense and you burn material — stress overtakes learning. Watch for these signals:</p>
+
+  <div class="signal-box"><div class="signal-label hot">Too Hot</div>You're crying into your flashcards. You can't sleep because lab values are cycling through your head. You studied for six hours and retained less than after two. Back off. Review what you already know. Rest is not weakness — it's cooling the crucible.</div>
+
+  <div class="signal-box"><div class="signal-label cold">Too Cold</div>You're forgetting things you studied yesterday. Your study sessions happen with the TV on. You're reading the same page three times without absorbing it. Increase focus. Phone off, door closed. Two uninterrupted hours beats four distracted ones.</div>
+
+  <div class="signal-box"><div class="signal-label right">Right Temperature</div>You're tired after studying but not wrecked. You can explain yesterday's topics to an imaginary patient. New material feels hard but not impossible. You're forgetting some things — that's architecture, not failure. The bunks are hot-racking. When you come back, the material will be warm.</div>
+
+  <h3>When You're Lost on a Topic</h3>
+
+  <p>If a topic doesn't click after two study sessions, don't spend a third. Drop to the Quick Reference Card for that topic. Memorize the decision rules — the two or three facts you need to answer an exam question. Plug the leak. Keep moving. Come back during your Sharpen cycle. Sometimes distance is what makes a topic click.</p>
+
+  <h3>Your Weekly Trim</h3>
+
+  <p>At the end of each study week, check your balance. Which sections are you heavy on? Which are light? Move your hours toward the light side. You're not behind — you're adjusting trim. A submarine that doesn't adjust sinks. A student who doesn't rebalance overinvests in strengths and underinvests in gaps.</p>
+
+  <h3>The Last 48 Hours</h3>
+
+  <p>Two days before your exam: stop studying new material. Review your Quick Reference Cards if you want. Otherwise — walk, sleep, eat something good, watch something that makes you laugh. Your submarine is loaded. The torpedoes are ready. Adding more noise now makes you less accurate, not more prepared. This is silent running. Trust what you've loaded.</p>
+
+  <p><strong>One hard truth:</strong> Take your exam as close to graduation as you can. Your knowledge is freshest now. Every month you wait, material decays. This guide helps you study, but it cannot replace recency. Schedule the exam before you feel ready. You need the car in the parking lot. You need to see the end.</p>
+</div>
+
+<!-- ============================== -->
+<!-- SECTION 7 — REDUCTION OF RISK  -->
+<!-- (Proof section with real content) -->
+<!-- ============================== -->
+<div class="section-header" data-section-name="Reduction of Risk Potential">
+  <div class="section-number">Section 7</div>
+  <h2>Reduction of Risk Potential</h2>
+  <div class="section-weight">12% of your exam</div>
+  <div class="section-feel">The observatory. You read the instruments. The instruments tell you what's happening inside the patient. Labs, ABGs, diagnostics, EKGs — this is the section where numbers become decisions.</div>
+</div>
+
+<p style="margin-bottom: 24px;"><strong>After this section, you should be able to:</strong> interpret a basic metabolic panel without a reference sheet, determine acid-base status from an ABG, identify the six most-tested cardiac rhythms, and know which lab values require immediate intervention. If you can't do those four things with the book closed, come back.</p>
+
+<!-- Topic: Lab Values -->
+<div class="topic">
+  <div class="topic-title">Lab Values — Blood</div>
+  <div class="topic-subtitle">High-yield · Tested across all 8 sections</div>
+
+  <div class="field-group">
+    <div class="field-label">What</div>
+    <div class="field-content">
+      <p>Blood lab values are the vital signs you can't see. They tell you what's happening at the cellular level — oxygen carrying capacity, clotting ability, infection response, kidney function. The NCLEX doesn't ask you to order labs. It asks you what the results <em>mean</em> and what you'd <em>do</em>.</p>
+    </div>
+  </div>
+
+  <div class="field-group">
+    <div class="field-label">The Numbers</div>
+    <div class="field-content">
+      <table class="meds-table">
+        <tr><th>Lab</th><th>Normal Range</th><th>Memory Hook</th></tr>
+        <tr><td><strong>Hemoglobin</strong></td><td>M: 13–18 · F: 12–16</td><td>Think puberty — males run higher</td></tr>
+        <tr><td><strong>Hematocrit</strong></td><td>M: 42–50 · F: 37–47</td><td>Roughly 3× hemoglobin</td></tr>
+        <tr><td><strong>WBC</strong></td><td>4,000–11,000</td><td>Kids aged 4–11 always get sick</td></tr>
+        <tr><td><strong>RBC</strong></td><td>4–6 million</td><td>BLOOD has 5 letters, between 4–6</td></tr>
+        <tr><td><strong>Platelets</strong></td><td>150,000–400,000</td><td>A dinnerware set costs $150–400</td></tr>
+        <tr><td><strong>BUN</strong></td><td>10–20</td><td>BUN, a perfect 10–20</td></tr>
+        <tr><td><strong>Creatinine</strong></td><td>0.5–1.5</td><td>Rate the creatinine creature: 0.5–1.5</td></tr>
+        <tr><td><strong>Glucose (fasting)</strong></td><td>&lt;100</td><td>Under 100 or there's a problem</td></tr>
+        <tr><td><strong>A1C</strong></td><td>&lt;5.7%</td><td>Three-month glucose average</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="exam-strategy">
+    <div class="field-label">Exam Strategy</div>
+    <div class="field-content">
+      <p>The NCLEX loves pairing lab values with clinical scenarios. They'll give you a patient with symptoms and labs — your job is to connect them. If the question says "which lab finding would the nurse expect," work backwards from the disease. Cirrhosis? Expect elevated ammonia, bilirubin, and prolonged PT. Don't memorize every lab for every disease. Learn the pattern: what organ is affected → what does that organ regulate → which lab reflects that function?</p>
+    </div>
+  </div>
+
+  <div class="connect-box">
+    <div class="field-label">Connect</div>
+    <div class="field-content">These values show up everywhere. Potassium connects to cardiac rhythms (Section 8) and medication safety (Section 6 — never IV push potassium). Platelets connect to bleeding precautions (Section 2). WBC connects to infection control (Section 2) and neutropenic precautions. When you study labs, you're studying the bridges between islands.</div>
+  </div>
+</div>
+
+<!-- Topic: Electrolyte Values -->
+<div class="topic">
+  <div class="topic-title">Electrolyte Values</div>
+  <div class="topic-subtitle">High-yield · Directly tested and embedded in clinical scenarios</div>
+
+  <div class="field-group">
+    <div class="field-label">What</div>
+    <div class="field-content">
+      <p>Electrolytes are the body's electrical system. Sodium, potassium, calcium, magnesium, chloride, phosphate — they regulate heartbeat, nerve function, muscle contraction, and fluid balance. When they're off, everything is off. The NCLEX tests your ability to recognize imbalances and respond appropriately.</p>
+    </div>
+  </div>
+
+  <div class="field-group">
+    <div class="field-label">The Numbers</div>
+    <div class="field-content">
+      <table class="meds-table">
+        <tr><th>Electrolyte</th><th>Normal</th><th>Memory Hook</th></tr>
+        <tr><td><strong>Sodium (Na+)</strong></td><td>135–145</td><td>A can of cola costs $1.35–$1.45</td></tr>
+        <tr><td><strong>Potassium (K+)</strong></td><td>3.5–5.0</td><td>Buy 3.5–5 bananas at the store</td></tr>
+        <tr><td><strong>Calcium (Ca2+)</strong></td><td>9–11</td><td>Call 9-1-1</td></tr>
+        <tr><td><strong>Magnesium (Mg2+)</strong></td><td>1.5–2.5</td><td>Magnum: 1.5–2.5× bigger</td></tr>
+        <tr><td><strong>Chloride (Cl-)</strong></td><td>95–105</td><td>95–105°F to swim in a pool</td></tr>
+        <tr><td><strong>Phosphate (PO4)</strong></td><td>2.5–4.5</td><td>Fossils are 2.5–4.5 million years old</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="field-group">
+    <div class="field-label">Recognize</div>
+    <div class="field-content">
+      <p><strong>Hyper</strong> (too much): Think of the body speeding up. Increased reflexes, irritability, muscle twitching, cardiac dysrhythmias. Exception: hyperkalemia — the heart doesn't speed up, it destabilizes. Tall peaked T-waves, widened QRS, cardiac arrest.</p>
+      <p><strong>Hypo</strong> (too little): Think of the body slowing down. Weakness, fatigue, decreased reflexes, constipation, shallow breathing. Hypokalemia and hypomagnesemia both cause dangerous cardiac rhythms.</p>
+      <p><strong>Calcium and phosphate are inversely related.</strong> When one goes up, the other goes down. This is the seesaw rule.</p>
+    </div>
+  </div>
+
+  <div class="exam-strategy">
+    <div class="field-label">Exam Strategy</div>
+    <div class="field-content">
+      <p>When an NCLEX question gives you electrolyte values, don't just check if they're high or low. Ask: what organ controls this electrolyte? Kidneys regulate potassium, sodium, and phosphate. Parathyroid regulates calcium. If the value is abnormal, think about the organ, then think about the patient's diagnosis. A renal failure patient with a potassium of 6.2 is a different emergency than a healthy patient with the same value — but both need intervention. The critical values to know cold: K+ above 6.0, K+ below 3.0, Ca2+ below 8.0, Na+ below 120 or above 160.</p>
+    </div>
+  </div>
+
+  <div class="connect-box">
+    <div class="field-label">Connect</div>
+    <div class="field-content">Potassium and digoxin are a deadly pair — hypokalemia increases digoxin toxicity (Section 6). Calcium connects to osteoporosis management (Section 5) and postpartum care — watch for hypocalcemia after thyroidectomy (Section 8). Magnesium connects to eclampsia treatment in maternity (Section 3). Every electrolyte has a medication partner.</div>
+  </div>
+</div>
+
+<!-- Topic: ABGs -->
+<div class="topic">
+  <div class="topic-title">Arterial Blood Gases (ABGs)</div>
+  <div class="topic-subtitle">High-yield · Requires a systematic approach, not memorization</div>
+
+  <div class="field-group">
+    <div class="field-label">What</div>
+    <div class="field-content">
+      <p>ABGs measure the blood's acid-base balance — how well the lungs and kidneys are maintaining pH. Three values matter: pH (is the blood acidic or alkalotic?), PaCO2 (what are the lungs doing?), and HCO3 (what are the kidneys doing?). The NCLEX tests whether you can read these three numbers and determine what's happening.</p>
+    </div>
+  </div>
+
+  <div class="field-group">
+    <div class="field-label">The Numbers</div>
+    <div class="field-content">
+      <table class="meds-table">
+        <tr><th>Value</th><th>Normal</th><th>What It Tells You</th></tr>
+        <tr><td><strong>pH</strong></td><td>7.35–7.45</td><td>Below 7.35 = acidosis. Above 7.45 = alkalosis.</td></tr>
+        <tr><td><strong>PaCO2</strong></td><td>35–45 mmHg</td><td>Lungs. CO2 is acid. High CO2 = respiratory acidosis.</td></tr>
+        <tr><td><strong>HCO3</strong></td><td>22–26 mEq/L</td><td>Kidneys. Bicarb is base. Low bicarb = metabolic acidosis.</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="field-group">
+    <div class="field-label">Mechanism — The Three-Step Read</div>
+    <div class="field-content">
+      <p><strong>Step 1:</strong> Look at the pH. Below 7.35? Acidosis. Above 7.45? Alkalosis. This tells you the <em>problem</em>.</p>
+      <p><strong>Step 2:</strong> Match the culprit. If pH is low (acidosis), check — is PaCO2 high (respiratory cause) or HCO3 low (metabolic cause)? The one that matches the pH direction is the culprit.</p>
+      <p><strong>Step 3:</strong> Check compensation. Is the other value trying to fix it? If both PaCO2 AND HCO3 are abnormal, the body is compensating. If pH is back to normal with both values off, it's fully compensated. If pH is still abnormal with both values off, it's partially compensated.</p>
+    </div>
+  </div>
+
+  <div class="field-group">
+    <div class="field-label">Recognize</div>
+    <div class="field-content">
+      <p><strong>Acidosis (pH down):</strong> Body shutting down. Decreased HR, decreased BP, decreased RR, fatigue, confusion, coma. Think: everything slows.</p>
+      <p><strong>Alkalosis (pH up):</strong> Body speeding up. Increased HR, increased RR, tremors, irritability, tingling, seizures. Think: everything accelerates.</p>
+      <p><strong>Common causes:</strong> Vomiting → metabolic alkalosis (losing acid). Diarrhea → metabolic acidosis (losing base). Hyperventilation → respiratory alkalosis (blowing off CO2). COPD/hypoventilation → respiratory acidosis (retaining CO2).</p>
+    </div>
+  </div>
+
+  <div class="exam-strategy">
+    <div class="field-label">Exam Strategy</div>
+    <div class="field-content">
+      <p>ABG questions are systematic, not tricky. Use the three-step read every time — don't skip steps, don't eyeball it. The NCLEX gives you the numbers and asks what's happening or what to do about it. If you can name the imbalance (respiratory acidosis, metabolic alkalosis, etc.), the intervention follows: respiratory problems → fix the breathing. Metabolic problems → fix the chemistry. A patient with a pH of 7.28, PaCO2 of 58, and HCO3 of 24 has respiratory acidosis — the lungs aren't clearing CO2. Intervention: improve ventilation. That's the whole pattern.</p>
+    </div>
+  </div>
+
+  <div class="connect-box">
+    <div class="field-label">Connect</div>
+    <div class="field-content">ABGs bridge directly to respiratory care (Section 8 — COPD, ventilator management), safety (Section 2 — oxygen administration), and pharmacology (Section 6 — sodium bicarbonate for acidosis). A DKA patient has metabolic acidosis with Kussmaul breathing — the lungs are compensating for what the kidneys can't fix. That's Sections 7, 8, and 6 in one patient.</div>
+  </div>
+</div>
+
+<!-- Topic: Coagulation Studies -->
+<div class="topic">
+  <div class="topic-title">Coagulation Studies</div>
+  <div class="topic-subtitle">High-yield · Directly tied to medication safety</div>
+
+  <div class="field-group">
+    <div class="field-label">What</div>
+    <div class="field-content">
+      <p>Coagulation studies tell you how well the blood clots. The NCLEX tests these in two contexts: monitoring anticoagulant therapy and identifying bleeding risk. Know the values, know which drug each test monitors, and know the antidotes.</p>
+    </div>
+  </div>
+
+  <div class="field-group">
+    <div class="field-label">The Numbers</div>
+    <div class="field-content">
+      <table class="meds-table">
+        <tr><th>Test</th><th>Normal</th><th>Monitors</th><th>Antidote</th></tr>
+        <tr><td><strong>PT</strong></td><td>10–12 sec</td><td>Warfarin</td><td>Vitamin K</td></tr>
+        <tr><td><strong>INR</strong></td><td>&lt;1.2 (2–3 on warfarin)</td><td>Warfarin</td><td>Vitamin K</td></tr>
+        <tr><td><strong>aPTT</strong></td><td>30–40 sec</td><td>Heparin</td><td>Protamine sulfate</td></tr>
+      </table>
+      <p style="margin-top: 8px;"><strong>Memory hooks:</strong> PT: Pre-Teens are 10–12 years old. aPTT: A Proper Teaching Time — your nursing instructors are 30–40. INR: the I looks like a 1.</p>
+    </div>
+  </div>
+
+  <div class="exam-strategy">
+    <div class="field-label">Exam Strategy</div>
+    <div class="field-content">
+      <p>The question pattern: a patient on an anticoagulant has lab values. Are they therapeutic, subtherapeutic, or supratherapeutic? Warfarin → check INR (therapeutic = 2–3). Heparin → check aPTT (therapeutic = 1.5–2.5× normal, roughly 46–70 sec). If supratherapeutic: hold the drug, call the provider, know the antidote. If the question asks about bleeding precautions, think: soft toothbrush, electric razor, no IM injections, no aspirin. These are the safety protocols that follow from the lab values.</p>
+    </div>
+  </div>
+
+  <div class="connect-box">
+    <div class="field-label">Connect</div>
+    <div class="field-content">Coagulation connects directly to pharmacology (Section 6 — warfarin, heparin, enoxaparin), safety (Section 2 — bleeding precautions, fall risk), and pre-operative care (Section 5 — hold anticoagulants before surgery, bridging therapy). If a patient on warfarin needs surgery, three sections of the guide are talking to each other.</div>
+  </div>
+</div>
+
+<!-- Topic: Critical Lab Values -->
+<div class="topic">
+  <div class="topic-title">Critical Lab Values — The Devil's Number</div>
+  <div class="topic-subtitle">Must-know · Immediate intervention required</div>
+
+  <div class="field-group">
+    <div class="field-label">What</div>
+    <div class="field-content">
+      <p>Critical values require immediate nursing action — notify the provider, intervene, document. These are the numbers where waiting is not an option. The mnemonic is the Devil's Number: 6-6-6.</p>
+    </div>
+  </div>
+
+  <div class="field-group">
+    <div class="field-label">The Numbers</div>
+    <div class="field-content">
+      <table class="meds-table">
+        <tr><th>Critical Value</th><th>Number</th><th>What It Means</th></tr>
+        <tr><td><strong>pH &lt; 6 or &gt; 8</strong></td><td>6</td><td>Life-threatening acid-base imbalance</td></tr>
+        <tr><td><strong>Potassium &gt; 6.0</strong></td><td>6</td><td>Cardiac arrest risk — peaked T waves, widened QRS</td></tr>
+        <tr><td><strong>PaCO2 &gt; 60</strong></td><td>6(0)</td><td>Respiratory failure — patient can't ventilate</td></tr>
+        <tr><td><strong>PaO2 &lt; 60</strong></td><td>6(0)</td><td>Hypoxemia — tissues aren't getting oxygen</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="exam-strategy">
+    <div class="field-label">Exam Strategy</div>
+    <div class="field-content">
+      <p>If any lab value in a question stem is critical, the answer is almost always: notify the provider immediately. The NCLEX isn't asking you to treat the critical value — it's asking if you recognize the emergency. Don't get distracted by other data in the question. A potassium of 6.4 overrides everything else. See the 6, call the provider.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Retrieval Block for Section 7 -->
+<div class="retrieval-block">
+  <div class="retrieval-header">Periscope Depth — Section 7 Retrieval</div>
+  <div class="retrieval-frame">Close the book. Surface and look around. This might not match what you expected. Better here than on exam day.</div>
+  <ol>
+    <li>A patient's lab results show: pH 7.30, PaCO2 52, HCO3 24. Name the imbalance, identify the cause, and state the expected intervention.</li>
+    <li>A patient on heparin has an aPTT of 98 seconds. What is the therapeutic range? Is this value therapeutic, sub-, or supratherapeutic? What are your two immediate actions?</li>
+    <li>Without looking: what are the normal ranges for sodium, potassium, and calcium? What critical potassium value requires immediate notification?</li>
+    <li>A patient with cirrhosis has the following labs: ammonia 85, bilirubin 4.2, PT 18. Which values are elevated and why? Connect each abnormal value to the organ dysfunction causing it.</li>
+    <li>Name the antidote for each: warfarin, heparin, magnesium sulfate, opioids, benzodiazepines.</li>
+  </ol>
+</div>
+
+<p style="font: italic 9pt var(--serif); color: var(--light); margin-top: 8px;">Answers are in the Answer Keys section at the back of the guide. Don't check them yet — sit with your answers first. The discomfort of not knowing is where learning happens.</p>
+
+<!-- Parkland after Section 7 -->
+<div class="parkland">
+  <div class="parkland-text">You just mapped the observatory. The instruments make more sense now than they did an hour ago. That's the come-up — you couldn't feel it building, but it was.</div>
+  <div class="parkland-check">How's your confidence? Rate it 1–5. Write it down. Keep going.</div>
+</div>
+
+</body>
+</html>
